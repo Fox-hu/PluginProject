@@ -25,6 +25,8 @@ public class PluginActivity extends BaseActivity {
         button3 = (Button) findViewById(R.id.test_start_receive);
         button4 = (Button) findViewById(R.id.test_send_receive);
         String appName = getIntent().getStringExtra("appName");
+        //这里的toast要使用appActivity 不能使用this作为context
+        //这个是一个明显的痛点 开发者明显的能感受到开发的不一样处
         Toast.makeText(appActivity, appName, Toast.LENGTH_SHORT).show();
         button1.setOnClickListener(new View.OnClickListener() {
             @Override

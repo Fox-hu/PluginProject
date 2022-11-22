@@ -49,12 +49,13 @@ public class ProxyActivity extends AppCompatActivity {
         }
     }
 
+    //在插件apk的activity中调用startActivity 其实相当于又开启了一个新的ProxyActivity
     @Override
     public void startActivity(Intent intent) {
         String className = intent.getStringExtra("className");
         Intent pluginIntent = new Intent(this, ProxyActivity.class);
         pluginIntent.putExtra("className", className);
-        //调用系统环境的startActivity
+        //注意！ 这里调用父类的startActivity
         super.startActivity(intent);
     }
 

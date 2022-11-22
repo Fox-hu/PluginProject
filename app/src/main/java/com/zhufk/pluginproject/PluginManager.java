@@ -72,11 +72,13 @@ public class PluginManager {
 
             /**
              *  插件里面的 resources
+             *  我们需要执行 assetManager.addAssetPath(String path) 将插件包的路径添加进去
              */
             AssetManager assetManager = AssetManager.class.newInstance();
             Method addAssetPathMethod = assetManager.getClass().getMethod("addAssetPath", String.class);
             addAssetPathMethod.invoke(assetManager, pluginPath);
-            Resources r = context.getResources();
+            Resources r = context.getResources(); //宿主的资源配置信息
+            //这个resource是特殊的resource 用于加载插件中的资源
             resources = new Resources(assetManager, r.getDisplayMetrics(), r.getConfiguration());
         } catch (Exception e) {
             e.printStackTrace();
